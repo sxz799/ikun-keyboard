@@ -13,49 +13,23 @@ var dataJ, dataN, dataT, dataM, dataNGM []byte
 
 func init() {
 	var err error
-
 	var fileJ, fileN, fileT, fileM, fileNGM []byte
-	if fileJ, err = ioutil.ReadFile("res/j.mp3"); err != nil {
-		log.Fatal(err)
-	}
-	if fileN, err = ioutil.ReadFile("res/n.mp3"); err != nil {
-		log.Fatal(err)
-	}
-	if fileT, err = ioutil.ReadFile("res/t.mp3"); err != nil {
-		log.Fatal(err)
-	}
-	if fileM, err = ioutil.ReadFile("res/m.mp3"); err != nil {
-		log.Fatal(err)
-	}
-	if fileNGM, err = ioutil.ReadFile("res/ngm.mp3"); err != nil {
-		log.Fatal(err)
-	}
-
-	var decJ *minimp3.Decoder
-
-	if decJ, dataJ, err = minimp3.DecodeFull(fileJ); err != nil {
-		log.Fatal(err)
-	}
-	if _, dataN, err = minimp3.DecodeFull(fileN); err != nil {
-		log.Fatal(err)
-	}
-	if _, dataT, err = minimp3.DecodeFull(fileT); err != nil {
-		log.Fatal(err)
-	}
-	if _, dataM, err = minimp3.DecodeFull(fileM); err != nil {
-		log.Fatal(err)
-	}
-	if _, dataNGM, err = minimp3.DecodeFull(fileNGM); err != nil {
-		log.Fatal(err)
-	}
-
+	fileJ, err = ioutil.ReadFile("res/j.mp3")
+	fileN, err = ioutil.ReadFile("res/n.mp3")
+	fileT, err = ioutil.ReadFile("res/t.mp3")
+	fileM, err = ioutil.ReadFile("res/m.mp3")
+	fileNGM, err = ioutil.ReadFile("res/ngm.mp3")
+	var dec *minimp3.Decoder
+	dec, dataJ, _ = minimp3.DecodeFull(fileJ)
+	_, dataN, err = minimp3.DecodeFull(fileN)
+	_, dataT, err = minimp3.DecodeFull(fileT)
+	_, dataM, err = minimp3.DecodeFull(fileM)
+	_, dataNGM, err = minimp3.DecodeFull(fileNGM)
 	var context *oto.Context
-	if context, err = oto.NewContext(decJ.SampleRate, decJ.Channels, 2, 1024); err != nil {
+	if context, err = oto.NewContext(dec.SampleRate, dec.Channels, 2, 1024); err != nil {
 		log.Fatal(err)
 	}
-
 	player = context.NewPlayer()
-
 }
 
 func PlaySound(str string) {

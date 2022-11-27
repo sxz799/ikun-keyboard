@@ -18,7 +18,7 @@ func paintedEggShell(num int) {
 	if lastNum+1 == num {
 		lastNum = num
 		if lastNum == 4 {
-			log.Println("小黑子 漏出鸡脚了吧!!!")
+			log.Println("小黑子,露出鸡脚了吧!")
 			time.Sleep(time.Second * 1)
 			go util.PlaySound("JNTM")
 			lastNum = 0
