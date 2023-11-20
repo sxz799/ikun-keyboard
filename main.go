@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/go-vgo/robotgo"
 	hook "github.com/robotn/gohook"
-	"iKunKeyboard/util"
+	"ikun-keyboard/util"
 	"log"
 	"strings"
 	"time"
