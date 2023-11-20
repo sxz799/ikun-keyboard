@@ -1,6 +1,6 @@
-module iKunKeyboard
+module ikun-keyboard
 
-go 1.19
+go 1.21
 
 require (
 	github.com/go-vgo/robotgo v0.100.10
